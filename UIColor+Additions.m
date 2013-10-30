@@ -77,7 +77,7 @@
     if (!successful)
         return nil;
     
-    return [self colorWithRGBAHex:rgbHexValue];
+    return [self colorWithRGBAHex:(unsigned long)rgbHexValue];
 }
 
 + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha
