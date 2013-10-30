@@ -39,6 +39,7 @@
 - (NSString*)RGBHexString;
 - (NSString*)RGBAHexString;
 
+// The following two methods only works for colors in HSV space!
 - (UIColor*)colorWithSaturation:(CGFloat)newSaturation;
 - (UIColor*)colorWithBrightness:(CGFloat)newBrightness;
 

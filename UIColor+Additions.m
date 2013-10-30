@@ -24,22 +24,34 @@
 
 #import "UIColor+Additions.h"
 
+#define RED_MASK 0xFF0000
+#define GREEN_MASK 0xFF00
+#define BLUE_MASK 0xFF
+#define ALPHA_MASK 0xFF000000
+
+#define RED_SHIFT 16
+#define GREEN_SHIFT 8
+#define BLUE_SHIFT 0
+#define ALPHA_SHIFT 24
+
+#define COLOR_SIZE 255.0f
+
 @implementation UIColor (Additions)
 
 + (UIColor*)colorWithRGBHex:(unsigned int)rgbValue
 {
-    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0
-                           green:((float)((rgbValue & 0xFF00) >> 8))/255.0
-                            blue:((float)(rgbValue & 0xFF))/255.0
+    return [UIColor colorWithRed:((float)((rgbValue & RED_MASK) >> RED_SHIFT))/COLOR_SIZE
+                           green:((float)((rgbValue & GREEN_MASK) >> GREEN_SHIFT))/COLOR_SIZE
+                            blue:((float)((rgbValue & BLUE_MASK) >> BLUE_SHIFT))/COLOR_SIZE
                            alpha:1.0];
 }
 
 + (UIColor*)colorWithRGBAHex:(unsigned long)rgbaValue
 {
-    return [UIColor colorWithRed:((float)((rgbaValue & 0xFF0000) >> 16))/255.0
-                           green:((float)((rgbaValue & 0xFF00) >> 8))/255.0
-                            blue:((float)(rgbaValue & 0xFF))/255.0
-                           alpha:((float)((rgbaValue & 0xFF000000) >> 24))/255.0];
+    return [UIColor colorWithRed:((float)((rgbaValue & RED_MASK) >> RED_SHIFT))/COLOR_SIZE
+                           green:((float)((rgbaValue & GREEN_MASK) >> GREEN_SHIFT))/COLOR_SIZE
+                            blue:((float)((rgbaValue & BLUE_MASK) >> BLUE_SHIFT))/COLOR_SIZE
+                           alpha:((float)((rgbaValue & ALPHA_MASK) >> ALPHA_SHIFT))/COLOR_SIZE];
 }
 
 + (UIColor*)colorWithRGBHexString:(NSString*)rgbStrValue
@@ -70,7 +82,7 @@
 
 + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha
 {
-    return [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha/255.0f];
+    return [UIColor colorWithRed:red/COLOR_SIZE green:green/COLOR_SIZE blue:blue/COLOR_SIZE alpha:alpha/COLOR_SIZE];
 }
 
 - (BOOL)getRGBHex:(unsigned int*)rgbHex
@@ -81,11 +93,11 @@
     if (!compatible)
         return NO;
     
-    int r = (int)roundf(rFloat*255.0f);
-    int g = (int)roundf(gFloat*255.0f);
-    int b = (int)roundf(bFloat*255.0f);
+    int r = (int)roundf(rFloat*COLOR_SIZE);
+    int g = (int)roundf(gFloat*COLOR_SIZE);
+    int b = (int)roundf(bFloat*COLOR_SIZE);
 
-    *rgbHex = (b) + (g << 8) + (r << 16);
+    *rgbHex = (b << BLUE_SHIFT) + (g << GREEN_SHIFT) + (r << RED_SHIFT);
     
     return YES;
 }
@@ -98,12 +110,12 @@
     if (!compatible)
         return NO;
     
-    unsigned long r = (unsigned long)roundf(rFloat*255.0f);
-    unsigned long g = (unsigned long)roundf(gFloat*255.0f);
-    unsigned long b = (unsigned long)roundf(bFloat*255.0f);
-    unsigned long a = (unsigned long)roundf(aFloat*255.0f);
+    unsigned long r = (unsigned long)roundf(rFloat*COLOR_SIZE);
+    unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
+    unsigned long b = (unsigned long)roundf(bFloat*COLOR_SIZE);
+    unsigned long a = (unsigned long)roundf(aFloat*COLOR_SIZE);
     
-    *rgbaHex = (b) + (g << 8) + (r << 16) + (a << 24);
+    *rgbaHex = (b << BLUE_SHIFT) + (g << GREEN_SHIFT) + (r << RED_SHIFT) + (a << ALPHA_SHIFT);
     
     return YES;
 }
@@ -147,7 +159,7 @@
 }
 
 
-- (UIColor *)lightenColorWithValue:(CGFloat)value
+- (UIColor*)lightenColorWithValue:(CGFloat)value
 {
     int totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
@@ -155,13 +167,15 @@
     CGFloat *oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
     CGFloat newComponents[4];
     
-    if(isGreyscale) {
+    if(isGreyscale)
+    {
         newComponents[0] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
         newComponents[1] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
         newComponents[2] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
         newComponents[3] = oldComponents[1];
     }
-    else {
+    else
+    {
         newComponents[0] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
         newComponents[1] = oldComponents[1] + value > 1.0 ? 1.0 : oldComponents[1] + value;
         newComponents[2] = oldComponents[2] + value > 1.0 ? 1.0 : oldComponents[2] + value;
@@ -178,7 +192,7 @@
     return retColor;
 }
 
-- (UIColor *)darkenColorWithValue:(CGFloat)value
+- (UIColor*)darkenColorWithValue:(CGFloat)value
 {
     int totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
@@ -186,13 +200,15 @@
     CGFloat *oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
     CGFloat newComponents[4];
     
-    if(isGreyscale) {
+    if(isGreyscale)
+    {
         newComponents[0] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
         newComponents[1] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
         newComponents[2] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
         newComponents[3] = oldComponents[1];
     }
-    else {
+    else
+    {
         newComponents[0] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
         newComponents[1] = oldComponents[1] - value < 0.0 ? 0.0 : oldComponents[1] - value;
         newComponents[2] = oldComponents[2] - value < 0.0 ? 0.0 : oldComponents[2] - value;
@@ -217,12 +233,10 @@
     CGFloat *components = (CGFloat *)CGColorGetComponents(self.CGColor);
     CGFloat sum;
     
-    if(isGreyscale) {
+    if(isGreyscale)
         sum = components[0];
-    }
-    else {
+    else
         sum = (components[0] + components[1] + components[2]) / 3.0f;
-    }
     
     return (sum > 0.8f);
 }
