@@ -33,13 +33,11 @@
 
 + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha;
 
-// The following four methods only works for colors in RGB space!
 - (BOOL)getRGBHex:(unsigned int*)rgbHex;
 - (BOOL)getRGBAHex:(unsigned long*)rgbaHex;
 - (NSString*)RGBHexString;
 - (NSString*)RGBAHexString;
 
-// The following two methods only works for colors in HSV space!
 - (UIColor*)colorWithSaturation:(CGFloat)newSaturation;
 - (UIColor*)colorWithBrightness:(CGFloat)newBrightness;
 

@@ -87,37 +87,72 @@
 
 - (BOOL)getRGBHex:(unsigned int*)rgbHex
 {
-    CGFloat rFloat, gFloat, bFloat, aFloat;
-    BOOL compatible = [self getRed:&rFloat green:&gFloat blue:&bFloat alpha:&aFloat];
+    int numComponents = CGColorGetNumberOfComponents(self.CGColor);
+    const CGFloat *components = CGColorGetComponents(self.CGColor);
     
-    if (!compatible)
-        return NO;
+    if (numComponents == 4)
+    {
+        CGFloat rFloat = components[0]; // red
+        CGFloat gFloat = components[1]; // green
+        CGFloat bFloat = components[2]; // blue
+        
+        unsigned long r = (unsigned long)roundf(rFloat*COLOR_SIZE);
+        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
+        unsigned long b = (unsigned long)roundf(bFloat*COLOR_SIZE);
+        
+        *rgbHex = (r << RED_SHIFT) + (g << GREEN_SHIFT) + (b << BLUE_SHIFT);
+        
+        return YES;
+    }
+    else if (numComponents == 2)
+    {
+        CGFloat gFloat = components[0]; // gray
+        
+        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
+        
+        *rgbHex = (g << RED_SHIFT) + (g << GREEN_SHIFT) + (g << BLUE_SHIFT);
+        
+        return YES;
+    }
     
-    int r = (int)roundf(rFloat*COLOR_SIZE);
-    int g = (int)roundf(gFloat*COLOR_SIZE);
-    int b = (int)roundf(bFloat*COLOR_SIZE);
-
-    *rgbHex = (b << BLUE_SHIFT) + (g << GREEN_SHIFT) + (r << RED_SHIFT);
-    
-    return YES;
+    return NO;
 }
 
 - (BOOL)getRGBAHex:(unsigned long*)rgbaHex;
 {
-    CGFloat rFloat, gFloat, bFloat, aFloat;
-    BOOL compatible = [self getRed:&rFloat green:&gFloat blue:&bFloat alpha:&aFloat];
+    int numComponents = CGColorGetNumberOfComponents(self.CGColor);
+    const CGFloat *components = CGColorGetComponents(self.CGColor);
     
-    if (!compatible)
-        return NO;
+    if (numComponents == 4)
+    {
+        CGFloat rFloat = components[0]; // red
+        CGFloat gFloat = components[1]; // green
+        CGFloat bFloat = components[2]; // blue
+        CGFloat aFloat = components[3]; // alpha
+        
+        unsigned long r = (unsigned long)roundf(rFloat*COLOR_SIZE);
+        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
+        unsigned long b = (unsigned long)roundf(bFloat*COLOR_SIZE);
+        unsigned long a = (unsigned long)roundf(aFloat*COLOR_SIZE);
+        
+        *rgbaHex = (r << RED_SHIFT) + (g << GREEN_SHIFT) + (b << BLUE_SHIFT) + (a << ALPHA_SHIFT);
+        
+        return YES;
+    }
+    else if (numComponents == 2)
+    {
+        CGFloat gFloat = components[0]; // gray
+        CGFloat aFloat = components[1]; // alpha
+        
+        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
+        unsigned long a = (unsigned long)roundf(aFloat *COLOR_SIZE);
+        
+        *rgbaHex = (g << RED_SHIFT) + (g << GREEN_SHIFT) + (g << BLUE_SHIFT) + (a << ALPHA_SHIFT);
+        
+        return YES;
+    }
     
-    unsigned long r = (unsigned long)roundf(rFloat*COLOR_SIZE);
-    unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
-    unsigned long b = (unsigned long)roundf(bFloat*COLOR_SIZE);
-    unsigned long a = (unsigned long)roundf(aFloat*COLOR_SIZE);
-    
-    *rgbaHex = (b << BLUE_SHIFT) + (g << GREEN_SHIFT) + (r << RED_SHIFT) + (a << ALPHA_SHIFT);
-    
-    return YES;
+    return NO;
 }
 
 - (NSString*)RGBHexString
