@@ -46,7 +46,7 @@
                            alpha:1.0];
 }
 
-+ (UIColor*)colorWithRGBAHex:(unsigned long)rgbaValue
++ (UIColor*)colorWithRGBAHex:(unsigned int)rgbaValue
 {
     return [UIColor colorWithRed:((float)((rgbaValue & RED_MASK) >> RED_SHIFT))/COLOR_SIZE
                            green:((float)((rgbaValue & GREEN_MASK) >> GREEN_SHIFT))/COLOR_SIZE
@@ -69,15 +69,15 @@
 
 + (UIColor*)colorWithRGBAHexString:(NSString*)rgbaStrValue
 {
-    unsigned long long rgbHexValue;
+    unsigned int rgbHexValue;
     
     NSScanner* scanner = [NSScanner scannerWithString:rgbaStrValue];
-    BOOL successful = [scanner scanHexLongLong:&rgbHexValue];
+    BOOL successful = [scanner scanHexInt:&rgbHexValue];
     
     if (!successful)
         return nil;
     
-    return [self colorWithRGBAHex:(unsigned long)rgbHexValue];
+    return [self colorWithRGBAHex:rgbHexValue];
 }
 
 + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha
@@ -96,9 +96,9 @@
         CGFloat gFloat = components[1]; // green
         CGFloat bFloat = components[2]; // blue
         
-        unsigned long r = (unsigned long)roundf(rFloat*COLOR_SIZE);
-        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
-        unsigned long b = (unsigned long)roundf(bFloat*COLOR_SIZE);
+        unsigned int r = (unsigned int)roundf(rFloat*COLOR_SIZE);
+        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
+        unsigned int b = (unsigned int)roundf(bFloat*COLOR_SIZE);
         
         *rgbHex = (r << RED_SHIFT) + (g << GREEN_SHIFT) + (b << BLUE_SHIFT);
         
@@ -108,7 +108,7 @@
     {
         CGFloat gFloat = components[0]; // gray
         
-        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
+        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
         
         *rgbHex = (g << RED_SHIFT) + (g << GREEN_SHIFT) + (g << BLUE_SHIFT);
         
@@ -118,7 +118,7 @@
     return NO;
 }
 
-- (BOOL)getRGBAHex:(unsigned long*)rgbaHex;
+- (BOOL)getRGBAHex:(unsigned int*)rgbaHex;
 {
     int numComponents = CGColorGetNumberOfComponents(self.CGColor);
     const CGFloat *components = CGColorGetComponents(self.CGColor);
@@ -130,10 +130,10 @@
         CGFloat bFloat = components[2]; // blue
         CGFloat aFloat = components[3]; // alpha
         
-        unsigned long r = (unsigned long)roundf(rFloat*COLOR_SIZE);
-        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
-        unsigned long b = (unsigned long)roundf(bFloat*COLOR_SIZE);
-        unsigned long a = (unsigned long)roundf(aFloat*COLOR_SIZE);
+        unsigned int r = (unsigned int)roundf(rFloat*COLOR_SIZE);
+        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
+        unsigned int b = (unsigned int)roundf(bFloat*COLOR_SIZE);
+        unsigned int a = (unsigned int)roundf(aFloat*COLOR_SIZE);
         
         *rgbaHex = (r << RED_SHIFT) + (g << GREEN_SHIFT) + (b << BLUE_SHIFT) + (a << ALPHA_SHIFT);
         
@@ -144,8 +144,8 @@
         CGFloat gFloat = components[0]; // gray
         CGFloat aFloat = components[1]; // alpha
         
-        unsigned long g = (unsigned long)roundf(gFloat*COLOR_SIZE);
-        unsigned long a = (unsigned long)roundf(aFloat *COLOR_SIZE);
+        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
+        unsigned int a = (unsigned int)roundf(aFloat *COLOR_SIZE);
         
         *rgbaHex = (g << RED_SHIFT) + (g << GREEN_SHIFT) + (g << BLUE_SHIFT) + (a << ALPHA_SHIFT);
         
@@ -168,13 +168,13 @@
 
 - (NSString*)RGBAHexString
 {
-    unsigned long value = 0;
+    unsigned int value = 0;
     BOOL compatible = [self getRGBAHex:&value];
     
     if (!compatible)
         return nil;
     
-    return [NSString stringWithFormat:@"%lx", value];
+    return [NSString stringWithFormat:@"%x", value];
 }
 
 - (UIColor*)colorWithSaturation:(CGFloat)newSaturation

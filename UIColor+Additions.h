@@ -27,14 +27,14 @@
 @interface UIColor (Additions)
 
 + (UIColor*)colorWithRGBHex:(unsigned int)rgbValue;
-+ (UIColor*)colorWithRGBAHex:(unsigned long)rgbaValue;
++ (UIColor*)colorWithRGBAHex:(unsigned int)rgbaValue;
 + (UIColor*)colorWithRGBHexString:(NSString*)rgbStrValue;
 + (UIColor*)colorWithRGBAHexString:(NSString*)rgbaStrValue;
 
 + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha;
 
 - (BOOL)getRGBHex:(unsigned int*)rgbHex;
-- (BOOL)getRGBAHex:(unsigned long*)rgbaHex;
+- (BOOL)getRGBAHex:(unsigned int*)rgbaHex;
 - (NSString*)RGBHexString;
 - (NSString*)RGBAHexString;
 
