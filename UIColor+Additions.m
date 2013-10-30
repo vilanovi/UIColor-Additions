@@ -26,15 +26,15 @@
 
 @implementation UIColor (Additions)
 
-
-+ (UIColor*)colorWithRGBHex:(int)rgbValue
++ (UIColor*)colorWithRGBHex:(unsigned int)rgbValue
 {
     return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0
                            green:((float)((rgbValue & 0xFF00) >> 8))/255.0
-                            blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+                            blue:((float)(rgbValue & 0xFF))/255.0
+                           alpha:1.0];
 }
 
-+ (UIColor*)colorWithRGBAHex:(int)rgbaValue
++ (UIColor*)colorWithRGBAHex:(unsigned long)rgbaValue
 {
     return [UIColor colorWithRed:((float)((rgbaValue & 0xFF0000) >> 16))/255.0
                            green:((float)((rgbaValue & 0xFF00) >> 8))/255.0
@@ -42,16 +42,99 @@
                            alpha:((float)((rgbaValue & 0xFF000000) >> 24))/255.0];
 }
 
++ (UIColor*)colorWithRGBHexString:(NSString*)rgbStrValue
+{
+    unsigned int rgbHexValue;
+    
+    NSScanner* scanner = [NSScanner scannerWithString:rgbStrValue];
+    BOOL successful = [scanner scanHexInt:&rgbHexValue];
+    
+    if (!successful)
+        return nil;
+    
+    return [self colorWithRGBHex:rgbHexValue];
+}
+
++ (UIColor*)colorWithRGBAHexString:(NSString*)rgbaStrValue
+{
+    unsigned long long rgbHexValue;
+    
+    NSScanner* scanner = [NSScanner scannerWithString:rgbaStrValue];
+    BOOL successful = [scanner scanHexLongLong:&rgbHexValue];
+    
+    if (!successful)
+        return nil;
+    
+    return [self colorWithRGBAHex:rgbHexValue];
+}
+
 + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha
 {
     return [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha/255.0f];
+}
+
+- (BOOL)getRGBHex:(unsigned int*)rgbHex
+{
+    CGFloat rFloat, gFloat, bFloat, aFloat;
+    BOOL compatible = [self getRed:&rFloat green:&gFloat blue:&bFloat alpha:&aFloat];
+    
+    if (!compatible)
+        return NO;
+    
+    int r = (int)roundf(rFloat*255.0f);
+    int g = (int)roundf(gFloat*255.0f);
+    int b = (int)roundf(bFloat*255.0f);
+
+    *rgbHex = (b) + (g << 8) + (r << 16);
+    
+    return YES;
+}
+
+- (BOOL)getRGBAHex:(unsigned long*)rgbaHex;
+{
+    CGFloat rFloat, gFloat, bFloat, aFloat;
+    BOOL compatible = [self getRed:&rFloat green:&gFloat blue:&bFloat alpha:&aFloat];
+    
+    if (!compatible)
+        return NO;
+    
+    unsigned long r = (unsigned long)roundf(rFloat*255.0f);
+    unsigned long g = (unsigned long)roundf(gFloat*255.0f);
+    unsigned long b = (unsigned long)roundf(bFloat*255.0f);
+    unsigned long a = (unsigned long)roundf(aFloat*255.0f);
+    
+    *rgbaHex = (b) + (g << 8) + (r << 16) + (a << 24);
+    
+    return YES;
+}
+
+- (NSString*)RGBHexString
+{
+    unsigned int value = 0;
+    BOOL compatible = [self getRGBHex:&value];
+    
+    if (!compatible)
+        return nil;
+    
+    return [NSString stringWithFormat:@"%x", value];
+}
+
+- (NSString*)RGBAHexString
+{
+    unsigned long value = 0;
+    BOOL compatible = [self getRGBAHex:&value];
+    
+    if (!compatible)
+        return nil;
+    
+    return [NSString stringWithFormat:@"%lx", value];
 }
 
 - (UIColor*)colorWithSaturation:(CGFloat)newSaturation
 {
     CGFloat hue,saturation,brightness,alpha;
     [self getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
-        
+    
     return [UIColor colorWithHue:hue saturation:newSaturation brightness:brightness alpha:alpha];
 }
 
