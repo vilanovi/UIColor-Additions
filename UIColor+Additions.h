@@ -46,4 +46,7 @@
 - (UIColor *)darkenColorWithValue:(CGFloat)value;
 - (BOOL)isLightColor;
 
+- (NSString*)RGBHexValue;
+- (NSString*)RGBAHexValue;
+
 @end
