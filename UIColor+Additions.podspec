@@ -16,5 +16,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/vilanovi/UIColor-Additions.git", :tag => "1.0.0" }
   s.source_files = 'UIColor+Additions.{h,m}'
   s.framework  = 'UIKit'
+  s.requires_arc = true
   
 end
