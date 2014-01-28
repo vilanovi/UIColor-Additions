@@ -2,16 +2,10 @@ Pod::Spec.new do |s|
 
   s.name         = "UIColor+Additions"
   s.version      = "1.0.0"
-  s.summary      = "Adding methods to generate dynamically images from colors, adding corner radius, tinting images, etc."
+  s.summary      = "Basic additions to make UIColor more flexible."
 
   s.description  = <<-DESC
-                   This category of UIImage add methods to generate dynamically images:
-				   * from colors
-				   * adding corner radius (for each corner)
-				   * tinting images,
-				   * Much more! 
-				   
-				   Use this category if you want to add "colored style" to your app without having to generate colored graphic resources.
+                   Basic additions to make UIColor more flexible.
                    DESC
 
   s.homepage     = "https://github.com/vilanovi/UIColor-Additions"
