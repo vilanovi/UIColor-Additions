@@ -87,7 +87,7 @@
 
 - (BOOL)getRGBHex:(unsigned int*)rgbHex
 {
-    int numComponents = CGColorGetNumberOfComponents(self.CGColor);
+    size_t numComponents = CGColorGetNumberOfComponents(self.CGColor);
     const CGFloat *components = CGColorGetComponents(self.CGColor);
     
     if (numComponents == 4)
@@ -120,7 +120,7 @@
 
 - (BOOL)getRGBAHex:(unsigned int*)rgbaHex;
 {
-    int numComponents = CGColorGetNumberOfComponents(self.CGColor);
+    size_t numComponents = CGColorGetNumberOfComponents(self.CGColor);
     const CGFloat *components = CGColorGetComponents(self.CGColor);
     
     if (numComponents == 4)
@@ -196,7 +196,7 @@
 
 - (UIColor*)lightenColorWithValue:(CGFloat)value
 {
-    int totalComponents = CGColorGetNumberOfComponents(self.CGColor);
+    size_t totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
     
     CGFloat *oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
@@ -229,7 +229,7 @@
 
 - (UIColor*)darkenColorWithValue:(CGFloat)value
 {
-    int totalComponents = CGColorGetNumberOfComponents(self.CGColor);
+    size_t totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
     
     CGFloat *oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
@@ -262,7 +262,7 @@
 
 - (BOOL)isLightColor
 {
-    int totalComponents = CGColorGetNumberOfComponents(self.CGColor);
+    size_t totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
     
     CGFloat *components = (CGFloat *)CGColorGetComponents(self.CGColor);
