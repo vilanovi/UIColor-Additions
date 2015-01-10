@@ -24,6 +24,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * The color type (unsigned int).
+ **/
 typedef unsigned int ADDColorType;
 
 /**
