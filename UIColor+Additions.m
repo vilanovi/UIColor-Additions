@@ -24,39 +24,43 @@
 
 #import "UIColor+Additions.h"
 
-#define RED_MASK 0xFF0000
-#define GREEN_MASK 0xFF00
-#define BLUE_MASK 0xFF
-#define ALPHA_MASK 0xFF000000
+#define ADD_RED_MASK        0xFF0000
+#define ADD_GREEN_MASK      0xFF00
+#define ADD_BLUE_MASK       0xFF
+#define ADD_ALPHA_MASK      0xFF000000
 
-#define RED_SHIFT 16
-#define GREEN_SHIFT 8
-#define BLUE_SHIFT 0
-#define ALPHA_SHIFT 24
+#define ADD_RED_SHIFT       16
+#define ADD_GREEN_SHIFT     8
+#define ADD_BLUE_SHIFT      0
+#define ADD_ALPHA_SHIFT     24
 
-#define COLOR_SIZE 255.0f
+#define ADD_COLOR_SIZE      255.0
+
+#define ADD_LUM_RED         0.2989
+#define ADD_LUM_GREEN       0.5870
+#define ADD_LUM_BLUE        0.1140
 
 @implementation UIColor (Additions)
 
-+ (UIColor*)colorWithRGBHex:(unsigned int)rgbValue
++ (UIColor*)add_colorWithRGBHexValue:(ADDColorType)rgbValue
 {
-    return [UIColor colorWithRed:((float)((rgbValue & RED_MASK) >> RED_SHIFT))/COLOR_SIZE
-                           green:((float)((rgbValue & GREEN_MASK) >> GREEN_SHIFT))/COLOR_SIZE
-                            blue:((float)((rgbValue & BLUE_MASK) >> BLUE_SHIFT))/COLOR_SIZE
+    return [UIColor colorWithRed:((CGFloat)((rgbValue & ADD_RED_MASK) >> ADD_RED_SHIFT))/ADD_COLOR_SIZE
+                           green:((CGFloat)((rgbValue & ADD_GREEN_MASK) >> ADD_GREEN_SHIFT))/ADD_COLOR_SIZE
+                            blue:((CGFloat)((rgbValue & ADD_BLUE_MASK) >> ADD_BLUE_SHIFT))/ADD_COLOR_SIZE
                            alpha:1.0];
 }
 
-+ (UIColor*)colorWithRGBAHex:(unsigned int)rgbaValue
++ (UIColor*)add_colorWithRGBAHexValue:(ADDColorType)rgbaValue
 {
-    return [UIColor colorWithRed:((float)((rgbaValue & RED_MASK) >> RED_SHIFT))/COLOR_SIZE
-                           green:((float)((rgbaValue & GREEN_MASK) >> GREEN_SHIFT))/COLOR_SIZE
-                            blue:((float)((rgbaValue & BLUE_MASK) >> BLUE_SHIFT))/COLOR_SIZE
-                           alpha:((float)((rgbaValue & ALPHA_MASK) >> ALPHA_SHIFT))/COLOR_SIZE];
+    return [UIColor colorWithRed:((CGFloat)((rgbaValue & ADD_RED_MASK) >> ADD_RED_SHIFT))/ADD_COLOR_SIZE
+                           green:((CGFloat)((rgbaValue & ADD_GREEN_MASK) >> ADD_GREEN_SHIFT))/ADD_COLOR_SIZE
+                            blue:((CGFloat)((rgbaValue & ADD_BLUE_MASK) >> ADD_BLUE_SHIFT))/ADD_COLOR_SIZE
+                           alpha:((CGFloat)((rgbaValue & ADD_ALPHA_MASK) >> ADD_ALPHA_SHIFT))/ADD_COLOR_SIZE];
 }
 
-+ (UIColor*)colorWithRGBHexString:(NSString*)rgbStrValue
++ (UIColor*)add_colorWithRGBHexString:(NSString*)rgbStrValue
 {
-    unsigned int rgbHexValue;
+    ADDColorType rgbHexValue;
     
     NSScanner* scanner = [NSScanner scannerWithString:rgbStrValue];
     BOOL successful = [scanner scanHexInt:&rgbHexValue];
@@ -64,31 +68,26 @@
     if (!successful)
         return nil;
     
-    return [self colorWithRGBHex:rgbHexValue];
+    return [self add_colorWithRGBHexValue:rgbHexValue];
 }
 
-+ (UIColor*)colorWithRGBAHexString:(NSString*)rgbaStrValue
++ (UIColor*)add_colorWithRGBAHexString:(NSString*)rgbaStrValue
 {
-    unsigned int rgbHexValue;
+    ADDColorType rgbHexValue;
     
-    NSScanner* scanner = [NSScanner scannerWithString:rgbaStrValue];
+    NSScanner *scanner = [NSScanner scannerWithString:rgbaStrValue];
     BOOL successful = [scanner scanHexInt:&rgbHexValue];
     
     if (!successful)
         return nil;
     
-    return [self colorWithRGBAHex:rgbHexValue];
+    return [self add_colorWithRGBAHexValue:rgbHexValue];
 }
 
-+ (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha
-{
-    return [UIColor colorWithRed:red/COLOR_SIZE green:green/COLOR_SIZE blue:blue/COLOR_SIZE alpha:alpha/COLOR_SIZE];
-}
-
-- (BOOL)getRGBHex:(unsigned int*)rgbHex
+- (BOOL)add_getRGBHexValue:(ADDColorType*)rgbHex
 {
     size_t numComponents = CGColorGetNumberOfComponents(self.CGColor);
-    const CGFloat *components = CGColorGetComponents(self.CGColor);
+    CGFloat const * components = CGColorGetComponents(self.CGColor);
     
     if (numComponents == 4)
     {
@@ -96,11 +95,11 @@
         CGFloat gFloat = components[1]; // green
         CGFloat bFloat = components[2]; // blue
         
-        unsigned int r = (unsigned int)roundf(rFloat*COLOR_SIZE);
-        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
-        unsigned int b = (unsigned int)roundf(bFloat*COLOR_SIZE);
+        ADDColorType r = (ADDColorType)roundf(rFloat*ADD_COLOR_SIZE);
+        ADDColorType g = (ADDColorType)roundf(gFloat*ADD_COLOR_SIZE);
+        ADDColorType b = (ADDColorType)roundf(bFloat*ADD_COLOR_SIZE);
         
-        *rgbHex = (r << RED_SHIFT) + (g << GREEN_SHIFT) + (b << BLUE_SHIFT);
+        *rgbHex = (r << ADD_RED_SHIFT) + (g << ADD_GREEN_SHIFT) + (b << ADD_BLUE_SHIFT);
         
         return YES;
     }
@@ -108,9 +107,9 @@
     {
         CGFloat gFloat = components[0]; // gray
         
-        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
+        ADDColorType g = (ADDColorType)roundf(gFloat*ADD_COLOR_SIZE);
         
-        *rgbHex = (g << RED_SHIFT) + (g << GREEN_SHIFT) + (g << BLUE_SHIFT);
+        *rgbHex = (g << ADD_RED_SHIFT) + (g << ADD_GREEN_SHIFT) + (g << ADD_BLUE_SHIFT);
         
         return YES;
     }
@@ -118,10 +117,10 @@
     return NO;
 }
 
-- (BOOL)getRGBAHex:(unsigned int*)rgbaHex;
+- (BOOL)add_getRGBAHexValue:(ADDColorType*)rgbaHex;
 {
     size_t numComponents = CGColorGetNumberOfComponents(self.CGColor);
-    const CGFloat *components = CGColorGetComponents(self.CGColor);
+    CGFloat const * components = CGColorGetComponents(self.CGColor);
     
     if (numComponents == 4)
     {
@@ -130,12 +129,12 @@
         CGFloat bFloat = components[2]; // blue
         CGFloat aFloat = components[3]; // alpha
         
-        unsigned int r = (unsigned int)roundf(rFloat*COLOR_SIZE);
-        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
-        unsigned int b = (unsigned int)roundf(bFloat*COLOR_SIZE);
-        unsigned int a = (unsigned int)roundf(aFloat*COLOR_SIZE);
+        ADDColorType r = (ADDColorType)roundf(rFloat*ADD_COLOR_SIZE);
+        ADDColorType g = (ADDColorType)roundf(gFloat*ADD_COLOR_SIZE);
+        ADDColorType b = (ADDColorType)roundf(bFloat*ADD_COLOR_SIZE);
+        ADDColorType a = (ADDColorType)roundf(aFloat*ADD_COLOR_SIZE);
         
-        *rgbaHex = (r << RED_SHIFT) + (g << GREEN_SHIFT) + (b << BLUE_SHIFT) + (a << ALPHA_SHIFT);
+        *rgbaHex = (r << ADD_RED_SHIFT) + (g << ADD_GREEN_SHIFT) + (b << ADD_BLUE_SHIFT) + (a << ADD_ALPHA_SHIFT);
         
         return YES;
     }
@@ -144,10 +143,10 @@
         CGFloat gFloat = components[0]; // gray
         CGFloat aFloat = components[1]; // alpha
         
-        unsigned int g = (unsigned int)roundf(gFloat*COLOR_SIZE);
-        unsigned int a = (unsigned int)roundf(aFloat *COLOR_SIZE);
+        ADDColorType g = (ADDColorType)roundf(gFloat*ADD_COLOR_SIZE);
+        ADDColorType a = (ADDColorType)roundf(aFloat *ADD_COLOR_SIZE);
         
-        *rgbaHex = (g << RED_SHIFT) + (g << GREEN_SHIFT) + (g << BLUE_SHIFT) + (a << ALPHA_SHIFT);
+        *rgbaHex = (g << ADD_RED_SHIFT) + (g << ADD_GREEN_SHIFT) + (g << ADD_BLUE_SHIFT) + (a << ADD_ALPHA_SHIFT);
         
         return YES;
     }
@@ -155,10 +154,20 @@
     return NO;
 }
 
-- (NSString*)RGBHexString
+- (ADDColorType)add_RGBHexValue
 {
-    unsigned int value = 0;
-    BOOL compatible = [self getRGBHex:&value];
+    return 0;
+}
+
+- (ADDColorType)add_RGBAHexValue
+{
+    return 0;
+}
+
+- (NSString*)add_RGBHexString
+{
+    ADDColorType value = 0;
+    BOOL compatible = [self add_getRGBHexValue:&value];
     
     if (!compatible)
         return nil;
@@ -166,10 +175,10 @@
     return [NSString stringWithFormat:@"%x", value];
 }
 
-- (NSString*)RGBAHexString
+- (NSString*)add_RGBAHexString
 {
-    unsigned int value = 0;
-    BOOL compatible = [self getRGBAHex:&value];
+    ADDColorType value = 0;
+    BOOL compatible = [self add_getRGBAHexValue:&value];
     
     if (!compatible)
         return nil;
@@ -177,7 +186,41 @@
     return [NSString stringWithFormat:@"%x", value];
 }
 
-- (UIColor*)colorWithSaturation:(CGFloat)newSaturation
+
++ (UIColor*)add_colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue
+{
+    return [self add_colorWithRed255:red green255:green blue255:blue alpha255:ADD_COLOR_SIZE];
+}
+
++ (UIColor*)add_colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha
+{
+    return [UIColor colorWithRed:red/ADD_COLOR_SIZE green:green/ADD_COLOR_SIZE blue:blue/ADD_COLOR_SIZE alpha:alpha/ADD_COLOR_SIZE];
+}
+
+- (UIColor*)add_grayColor
+{
+    size_t totalComponents = CGColorGetNumberOfComponents(self.CGColor);
+    BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
+    
+    CGFloat const * components = (CGFloat *)CGColorGetComponents(self.CGColor);
+    CGFloat luminiscence = 0.0;
+    CGFloat alpha = 1.0;
+    
+    if (isGreyscale)
+    {
+        luminiscence = components[0];
+        alpha = components[1];
+    }
+    else
+    {
+        luminiscence = components[0]*ADD_LUM_RED + components[1]*ADD_LUM_GREEN + components[2]*ADD_LUM_BLUE;
+        alpha = components[3];
+    }
+    
+    return [UIColor colorWithWhite:luminiscence alpha:alpha];
+}
+
+- (UIColor*)add_colorWithSaturation:(CGFloat)newSaturation
 {
     CGFloat hue,saturation,brightness,alpha;
     [self getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
@@ -185,7 +228,7 @@
     return [UIColor colorWithHue:hue saturation:newSaturation brightness:brightness alpha:alpha];
 }
 
-- (UIColor*)colorWithBrightness:(CGFloat)newBrightness
+- (UIColor*)add_colorWithBrightness:(CGFloat)newBrightness
 {
     CGFloat hue,saturation,brightness,alpha;
     [self getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
@@ -194,27 +237,37 @@
 }
 
 
-- (UIColor*)lightenColorWithValue:(CGFloat)value
+- (UIColor*)add_lighterColorWithValue:(CGFloat)value
 {
     size_t totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
     
-    CGFloat *oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
+    CGFloat const * oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
     CGFloat newComponents[4];
     
-    if(isGreyscale)
+    CGFloat (^actionBlock)(CGFloat component) = ^CGFloat(CGFloat component) {
+        
+        CGFloat offset = 1.0 - component;
+        CGFloat newComponent = component + offset*value;
+        
+        // CGFloat newComponent = component + value > 1.0 ? 1.0 : component + value;
+        
+        return newComponent;
+    };
+    
+    if (isGreyscale)
     {
-        newComponents[0] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
-        newComponents[1] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
-        newComponents[2] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
-        newComponents[3] = oldComponents[1];
+        newComponents[0] = actionBlock(oldComponents[0]);
+        newComponents[1] = actionBlock(oldComponents[0]);
+        newComponents[2] = actionBlock(oldComponents[0]);
+        newComponents[3] = actionBlock(oldComponents[1]);
     }
     else
     {
-        newComponents[0] = oldComponents[0] + value > 1.0 ? 1.0 : oldComponents[0] + value;
-        newComponents[1] = oldComponents[1] + value > 1.0 ? 1.0 : oldComponents[1] + value;
-        newComponents[2] = oldComponents[2] + value > 1.0 ? 1.0 : oldComponents[2] + value;
-        newComponents[3] = oldComponents[3];
+        newComponents[0] = actionBlock(oldComponents[0]);
+        newComponents[1] = actionBlock(oldComponents[1]);
+        newComponents[2] = actionBlock(oldComponents[2]);
+        newComponents[3] = actionBlock(oldComponents[3]);
     }
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -227,27 +280,36 @@
     return retColor;
 }
 
-- (UIColor*)darkenColorWithValue:(CGFloat)value
+- (UIColor*)add_darkerColorWithValue:(CGFloat)value
 {
     size_t totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
     
-    CGFloat *oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
+    CGFloat const * oldComponents = (CGFloat *)CGColorGetComponents(self.CGColor);
     CGFloat newComponents[4];
     
-    if(isGreyscale)
+    CGFloat (^actionBlock)(CGFloat component) = ^CGFloat(CGFloat component) {
+        
+        CGFloat newComponent = component * (1.0 - value);
+        
+        // CGFloat newComponent = component - value < 0.0 ? 0.0 : component - value;
+        
+        return newComponent;
+    };
+    
+    if (isGreyscale)
     {
-        newComponents[0] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
-        newComponents[1] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
-        newComponents[2] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
-        newComponents[3] = oldComponents[1];
+        newComponents[0] = actionBlock(oldComponents[0]);
+        newComponents[1] = actionBlock(oldComponents[0]);
+        newComponents[2] = actionBlock(oldComponents[0]);
+        newComponents[3] = actionBlock(oldComponents[1]);
     }
     else
     {
-        newComponents[0] = oldComponents[0] - value < 0.0 ? 0.0 : oldComponents[0] - value;
-        newComponents[1] = oldComponents[1] - value < 0.0 ? 0.0 : oldComponents[1] - value;
-        newComponents[2] = oldComponents[2] - value < 0.0 ? 0.0 : oldComponents[2] - value;
-        newComponents[3] = oldComponents[3];
+        newComponents[0] = actionBlock(oldComponents[0]);
+        newComponents[1] = actionBlock(oldComponents[1]);
+        newComponents[2] = actionBlock(oldComponents[2]);
+        newComponents[3] = actionBlock(oldComponents[3]);
     }
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -260,20 +322,25 @@
     return retColor;
 }
 
-- (BOOL)isLightColor
+- (BOOL)add_isLightColor
 {
     size_t totalComponents = CGColorGetNumberOfComponents(self.CGColor);
     BOOL isGreyscale = (totalComponents == 2) ? YES : NO;
     
-    CGFloat *components = (CGFloat *)CGColorGetComponents(self.CGColor);
+    CGFloat const * components = (CGFloat *)CGColorGetComponents(self.CGColor);
     CGFloat sum;
     
-    if(isGreyscale)
+    if (isGreyscale)
         sum = components[0];
     else
-        sum = (components[0] + components[1] + components[2]) / 3.0f;
+        sum = components[0]*ADD_LUM_RED + components[1]*ADD_LUM_GREEN + components[2]*ADD_LUM_BLUE;
     
     return (sum > 0.8f);
+}
+
+- (BOOL)add_isDarkColor
+{
+    return ![self add_isLightColor];
 }
 
 @end
