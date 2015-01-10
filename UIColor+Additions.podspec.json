@@ -2,7 +2,7 @@
 	"name": "UIColor+Additions",
 	"version": "2.0.0",
 	"summary": "Basic additions to make UIColor more flexible.",
-	"description": "Basic additions to make UIColor more flexible.",
+	"description": "Basic additions to make UIColor more flexible and accessible while developing your app.",
 	"homepage": "https://github.com/vilanovi/UIColor-Additions",
 	"license": {
 		"type": "MIT",
