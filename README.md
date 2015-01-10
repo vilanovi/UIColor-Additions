@@ -1,7 +1,6 @@
  [![Version](https://cocoapod-badges.herokuapp.com/v/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions) 
 [![Platform](https://cocoapod-badges.herokuapp.com/p/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions) 
 
-
 UIColor+Additions
 =================
 
@@ -46,46 +45,6 @@ Finally, UIColor+Additions add simple methods to create new lighter, darker, sat
     - (UIColor*)add_colorWithBrightness:(CGFloat)newBrightness;
     - (UIColor*)add_lighterColorWithValue:(CGFloat)value;
     - (UIColor*)add_darkerColorWithValue:(CGFloat)value;
-
----
-
-## HEX notation
-
-Creating colors from integer values:
-
-    + (UIColor*)colorWithRGBHex:(unsigned int)rgbValue;
-    + (UIColor*)colorWithRGBAHex:(unsigned int)rgbaValue;
-
-Creating colors from string values:
-
-    + (UIColor*)colorWithRGBHexString:(NSString*)rgbStrValue;
-    + (UIColor*)colorWithRGBAHexString:(NSString*)rgbaStrValue;
-
-Retreiving HEX values:
-
-    - (BOOL)getRGBHex:(unsigned int*)rgbHex;
-    - (BOOL)getRGBAHex:(unsigned int*)rgbaHex;
-    - (NSString*)RGBHexString;
-    - (NSString*)RGBAHexString;
-
-## RGB/RGBA notation
-
-Creating colors from RGB/RGBA 0-255 valeus:
-
-    + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha;
-
-## Getting related colors
-
-Changing saturatin or brightness:
-
-    - (UIColor*)colorWithSaturation:(CGFloat)newSaturation;
-    - (UIColor*)colorWithBrightness:(CGFloat)newBrightness;
-
-Getting lighter or darker color:
-
-    - (UIColor *)lightenColorWithValue:(CGFloat)value;
-    - (UIColor *)darkenColorWithValue:(CGFloat)value;
-    - (BOOL)isLightColor;
 
 ---
 ## Licence ##
