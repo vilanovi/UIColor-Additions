@@ -1,6 +1,8 @@
  [![Version](https://cocoapod-badges.herokuapp.com/v/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions) 
 [![Platform](https://cocoapod-badges.herokuapp.com/p/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions) 
 
+![UIColor+Additions](https://raw.githubusercontent.com/vilanovi/UIColor+Additions/master/Images/UIColorAdditionsLogo.jpg)
+
 UIColor+Additions
 =================
 
