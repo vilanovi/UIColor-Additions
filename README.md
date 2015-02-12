@@ -12,41 +12,41 @@ UIColor+Additions is a category on **UIColor** that helps the developer making c
 
 Use the convenience methdos to create colors from hexadecimal integer or string values:
 
-    + (UIColor*)add_colorWithRGBHexValue:(ADDColorType)rgbHexValue;
-    + (UIColor*)add_colorWithRGBAHexValue:(ADDColorType)rgbaHexValue;
-    + (UIColor*)add_colorWithRGBHexString:(NSString*)rgbHexString;
-    + (UIColor*)add_colorWithRGBAHexString:(NSString*)rgbaHexString;
+    + (UIColor*)colorWithRGBHexValue:(ADDColorType)rgbHexValue;
+    + (UIColor*)colorWithRGBAHexValue:(ADDColorType)rgbaHexValue;
+    + (UIColor*)colorWithRGBHexString:(NSString*)rgbHexString;
+    + (UIColor*)colorWithRGBAHexString:(NSString*)rgbaHexString;
 
 It is also possible to retrieve the hex reprsentation of a color:
 
-    - (BOOL)add_getRGBHexValue:(ADDColorType*)rgbHexValue;
-    - (BOOL)add_getRGBAHexValue:(ADDColorType*)rgbaHexValue;
-    - (NSString*)add_RGBHexString;
-    - (NSString*)add_RGBAHexString;
+    - (BOOL)getRGBHexValue:(ADDColorType*)rgbHexValue;
+    - (BOOL)getRGBAHexValue:(ADDColorType*)rgbaHexValue;
+    - (NSString*)RGBHexString;
+    - (NSString*)RGBAHexString;
 
 ### RGB suport
 
 RGB colors are usually represented in a range of 0-255. UIColor+Additions add convenience methods to create colors:
 
-    + (UIColor*)add_colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue;
-    + (UIColor*)add_colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha;
+    + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue;
+    + (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha;
 
 ### Luminiscence
 
 Easily, retrieve the gray version of a given color by computing the luminiscense value of it. Also, you can check if your color is considered "light" or "dark":
 
-    - (UIColor*)add_grayColor;
-    - (BOOL)add_isLightColor;
-    - (BOOL)add_isDarkColor;
+    - (UIColor*)grayColor;
+    - (BOOL)isLightColor;
+    - (BOOL)isDarkColor;
 
 ### Modifying Colors
 
 Finally, UIColor+Additions add simple methods to create new lighter, darker, saturated and brightner colors from existing ones:
 
-    - (UIColor*)add_colorWithSaturation:(CGFloat)newSaturation;
-    - (UIColor*)add_colorWithBrightness:(CGFloat)newBrightness;
-    - (UIColor*)add_lighterColorWithValue:(CGFloat)value;
-    - (UIColor*)add_darkerColorWithValue:(CGFloat)value;
+    - (UIColor*)colorWithSaturation:(CGFloat)newSaturation;
+    - (UIColor*)colorWithBrightness:(CGFloat)newBrightness;
+    - (UIColor*)lighterColorWithValue:(CGFloat)value;
+    - (UIColor*)darkerColorWithValue:(CGFloat)value;
 
 ---
 ## Licence ##
