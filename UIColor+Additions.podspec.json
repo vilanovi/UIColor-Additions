@@ -1,6 +1,6 @@
 {
 	"name": "UIColor+Additions",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"summary": "Basic additions to make UIColor more flexible.",
 	"description": "Basic additions to make UIColor more flexible and accessible while developing your app.",
 	"homepage": "https://github.com/vilanovi/UIColor-Additions",
@@ -17,7 +17,7 @@
 	},
 	"source": {
 		"git": "https://github.com/vilanovi/UIColor-Additions.git",
-		"tag": "2.0.0"
+		"tag": "2.0.1"
 	},
 	"source_files": "UIColor+Additions.{h,m}",
 	"frameworks": "UIKit",

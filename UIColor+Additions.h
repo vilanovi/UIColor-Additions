@@ -99,7 +99,7 @@ typedef unsigned int ADDColorType;
 /**
  * Creates a color from RGB (0-255 range) values.
  * @param red The red value in 0-255 range.
- * @param green The green value in 0-255 range.
+ * @param green The green value in 0-255 range.
  * @param blue The blue value in 0-255 range.
  * @return The new color from the RGB values.
  **/
@@ -108,7 +108,7 @@ typedef unsigned int ADDColorType;
 /**
  * Creates a color from RGBA (0-255 range) values.
  * @param red The red value in 0-255 range.
- * @param green The green value in 0-255 range.
+ * @param green The green value in 0-255 range.
  * @param blue The blue value in 0-255 range.
  * @param alpha The alpha value in 0-255 range.
  * @return The new color from the RGB values.
