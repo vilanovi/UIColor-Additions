@@ -260,14 +260,14 @@
         newComponents[0] = actionBlock(oldComponents[0]);
         newComponents[1] = actionBlock(oldComponents[0]);
         newComponents[2] = actionBlock(oldComponents[0]);
-        newComponents[3] = actionBlock(oldComponents[1]);
+        newComponents[3] = oldComponents[1];
     }
     else
     {
         newComponents[0] = actionBlock(oldComponents[0]);
         newComponents[1] = actionBlock(oldComponents[1]);
         newComponents[2] = actionBlock(oldComponents[2]);
-        newComponents[3] = actionBlock(oldComponents[3]);
+        newComponents[3] = oldComponents[3];
     }
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -302,14 +302,14 @@
         newComponents[0] = actionBlock(oldComponents[0]);
         newComponents[1] = actionBlock(oldComponents[0]);
         newComponents[2] = actionBlock(oldComponents[0]);
-        newComponents[3] = actionBlock(oldComponents[1]);
+		newComponents[3] = oldComponents[1];
     }
     else
     {
         newComponents[0] = actionBlock(oldComponents[0]);
         newComponents[1] = actionBlock(oldComponents[1]);
         newComponents[2] = actionBlock(oldComponents[2]);
-        newComponents[3] = actionBlock(oldComponents[3]);
+		newComponents[3] = oldComponents[3];
     }
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
