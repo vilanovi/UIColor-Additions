@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "UIColor+Additions.h"
 
 @interface UIColorAdditionsTests : XCTestCase
 
@@ -25,16 +26,18 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+- (void)testIsLightColor {
+    XCTAssertEqual(YES, [[UIColor whiteColor] isLightColor]);
+    XCTAssertEqual(YES, [[UIColor colorWithRGBHexString:@"dddddd"] isLightColor]);
+    XCTAssertEqual(NO, [[UIColor blackColor] isLightColor]);
+    XCTAssertEqual(NO, [[UIColor colorWithRGBHexString:@"cccccc"] isLightColor]);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testIsDarkColor {
+    XCTAssertEqual(NO, [[UIColor whiteColor] isDarkColor]);
+    XCTAssertEqual(NO, [[UIColor colorWithRGBHexString:@"dddddd"] isDarkColor]);
+    XCTAssertEqual(YES, [[UIColor blackColor] isDarkColor]);
+    XCTAssertEqual(YES, [[UIColor colorWithRGBHexString:@"cccccc"] isDarkColor]);
 }
 
 @end

@@ -27,7 +27,7 @@
 /**
  * The color type (unsigned int).
  **/
-typedef unsigned int ADDColorType;
+typedef unsigned int ColorType;
 
 /**
  * Category on `UIColor` that add convenience methods to manipulate colors.
@@ -43,54 +43,54 @@ typedef unsigned int ADDColorType;
  * @param rgbValue The RGB color represented in an hexadecimal integer.
  * @return The `UIColor` instance.
  **/
-+ (UIColor*)add_colorWithRGBHexValue:(ADDColorType)rgbHexValue;
++ (UIColor*)colorWithRGBHexValue:(ColorType)rgbHexValue;
 
 /**
  * Creates a color from a RGBA hexadecimal integer value.
  * @param rgbValue The RGBA color represented in an hexadecimal integer.
  * @return The `UIColor` instance.
  **/
-+ (UIColor*)add_colorWithRGBAHexValue:(ADDColorType)rgbaHexValue;
++ (UIColor*)colorWithRGBAHexValue:(ColorType)rgbaHexValue;
 
 /**
  * Creates a color from a RGB hexadecimal string value.
  * @param rgbValue The RGB color represented in an hexadecimal string.
  * @return The `UIColor` instance.
  **/
-+ (UIColor*)add_colorWithRGBHexString:(NSString*)rgbHexString;
++ (UIColor*)colorWithRGBHexString:(NSString*)rgbHexString;
 
 /**
  * Creates a color from a RGBA hexadecimal string value.
  * @param rgbValue The RGBA color represented in an hexadecimal string.
  * @return The `UIColor` instance.
  **/
-+ (UIColor*)add_colorWithRGBAHexString:(NSString*)rgbaHexString;
++ (UIColor*)colorWithRGBAHexString:(NSString*)rgbaHexString;
 
 /**
  * Retrieves the RGB hexadecimal integer value.
  * @param rgbHexValue A pointer to an integer where the value will be written.
  * @return YES if the color description could have been retrevied, otherwise NO.
  **/
-- (BOOL)add_getRGBHexValue:(ADDColorType*)rgbHexValue;
+- (BOOL)getRGBHexValue:(ColorType*)rgbHexValue;
 
 /**
  * Retrieves the RGBA hexadecimal integer value.
  * @param rgbaHexValue A pointer to an integer where the value will be written.
  * @return YES if the color description could have been retrevied, otherwise NO.
  **/
-- (BOOL)add_getRGBAHexValue:(ADDColorType*)rgbaHexValue;
+- (BOOL)getRGBAHexValue:(ColorType*)rgbaHexValue;
 
 /**
  * Retrieves the RGB hexadecimal string value.
  * @return The RGB hexadecimal string representation or nil.
  **/
-- (NSString*)add_RGBHexString;
+- (NSString*)RGBHexString;
 
 /**
  * Retrieves the RGBA hexadecimal string value.
  * @return The RGBA hexadecimal string representation or nil.
  **/
-- (NSString*)add_RGBAHexString;
+- (NSString*)RGBAHexString;
 
 /** *************************************************** **
  * @name RGB support
@@ -103,7 +103,7 @@ typedef unsigned int ADDColorType;
  * @param blue The blue value in 0-255 range.
  * @return The new color from the RGB values.
  **/
-+ (UIColor*)add_colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue;
++ (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue;
 
 /**
  * Creates a color from RGBA (0-255 range) values.
@@ -113,7 +113,7 @@ typedef unsigned int ADDColorType;
  * @param alpha The alpha value in 0-255 range.
  * @return The new color from the RGB values.
  **/
-+ (UIColor*)add_colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha;
++ (UIColor*)colorWithRed255:(CGFloat)red green255:(CGFloat)green blue255:(CGFloat)blue alpha255:(CGFloat)alpha;
 
 /** *************************************************** **
  * @name Luminiscence
@@ -124,19 +124,19 @@ typedef unsigned int ADDColorType;
  * @return The new grayscale color.
  * @discussion This method uses the formula of luminiscence of L=R*0.2989+G*0.5870+B*0.1140.
  **/
-- (UIColor*)add_grayColor;
+- (UIColor*)grayColor;
 
 /**
  * A convenience method that indicates if a color is considered "light".
  * @return YES if the color is considered "light", NO otherwise.
  **/
-- (BOOL)add_isLightColor;
+- (BOOL)isLightColor;
 
 /**
  * A convenience method that indicates if a color is considered "dark".
  * @return YES if the color is considered "dark", NO otherwise.
  **/
-- (BOOL)add_isDarkColor;
+- (BOOL)isDarkColor;
 
 /** *************************************************** **
  * @name Modifying colors
@@ -147,27 +147,27 @@ typedef unsigned int ADDColorType;
  * @param newSaturation 
  * @return A new color.
  **/
-- (UIColor*)add_colorWithSaturation:(CGFloat)newSaturation;
+- (UIColor*)colorWithSaturation:(CGFloat)newSaturation;
 
 /**
  * Creates a new color from the current one by changing the brightness.
  * @param newBrightness
  * @return A new color.
  **/
-- (UIColor*)add_colorWithBrightness:(CGFloat)newBrightness;
+- (UIColor*)colorWithBrightness:(CGFloat)newBrightness;
 
 /**
  * Creates a new lighter color.
  * @param value Float value from 0 to 1 where 0 means no change and 1 means the lightest possible color.
  * @return A new color.
  **/
-- (UIColor*)add_lighterColorWithValue:(CGFloat)value;
+- (UIColor*)lighterColorWithValue:(CGFloat)value;
 
 /**
  * Creates a new darker color.
  * @param value Float value from 0 to 1 where 0 means no change and 1 means the darkest possible color.
  * @return A new color.
  **/
-- (UIColor*)add_darkerColorWithValue:(CGFloat)value;
+- (UIColor*)darkerColorWithValue:(CGFloat)value;
 
 @end
