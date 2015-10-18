@@ -393,6 +393,11 @@
 				);
 				INFOPLIST_FILE = UIColorAdditionsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIColorAdditions.app/UIColorAdditions";
 			};
@@ -408,6 +413,11 @@
 				);
 				INFOPLIST_FILE = UIColorAdditionsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIColorAdditions.app/UIColorAdditions";
 			};
@@ -432,6 +442,7 @@
 				D266A71F1A61D62D007E64AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D266A7201A61D62D007E64AD /* Build configuration list for PBXNativeTarget "UIColorAdditionsTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +451,7 @@
 				D266A7221A61D62D007E64AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
