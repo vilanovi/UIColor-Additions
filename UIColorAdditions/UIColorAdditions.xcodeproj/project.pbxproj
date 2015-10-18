@@ -14,10 +14,7 @@
 		D266A70B1A61D62D007E64AD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D266A70A1A61D62D007E64AD /* Images.xcassets */; };
 		D266A70E1A61D62D007E64AD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D266A70C1A61D62D007E64AD /* LaunchScreen.xib */; };
 		D266A71A1A61D62D007E64AD /* UIColorAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D266A7191A61D62D007E64AD /* UIColorAdditionsTests.m */; };
-		D266A7281A61D638007E64AD /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D266A7231A61D638007E64AD /* LICENSE.txt */; };
-		D266A7291A61D638007E64AD /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D266A7241A61D638007E64AD /* README.md */; };
 		D266A72A1A61D638007E64AD /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D266A7261A61D638007E64AD /* UIColor+Additions.m */; };
-		D266A72B1A61D638007E64AD /* UIColor+Additions.podspec.json in Resources */ = {isa = PBXBuildFile; fileRef = D266A7271A61D638007E64AD /* UIColor+Additions.podspec.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +41,6 @@
 		D266A7131A61D62D007E64AD /* UIColorAdditionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIColorAdditionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D266A7181A61D62D007E64AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D266A7191A61D62D007E64AD /* UIColorAdditionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIColorAdditionsTests.m; sourceTree = "<group>"; };
-		D266A7231A61D638007E64AD /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = ../../LICENSE.txt; sourceTree = "<group>"; };
-		D266A7241A61D638007E64AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		D266A7251A61D638007E64AD /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Additions.h"; path = "../../UIColor+Additions.h"; sourceTree = "<group>"; };
 		D266A7261A61D638007E64AD /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Additions.m"; path = "../../UIColor+Additions.m"; sourceTree = "<group>"; };
 		D266A7271A61D638007E64AD /* UIColor+Additions.podspec.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; name = "UIColor+Additions.podspec.json"; path = "../../UIColor+Additions.podspec.json"; sourceTree = "<group>"; };
@@ -90,15 +85,13 @@
 		D266A6FC1A61D62D007E64AD /* UIColorAdditions */ = {
 			isa = PBXGroup;
 			children = (
+				D266A7271A61D638007E64AD /* UIColor+Additions.podspec.json */,
 				D266A7011A61D62D007E64AD /* AppDelegate.h */,
 				D266A7021A61D62D007E64AD /* AppDelegate.m */,
 				D266A7041A61D62D007E64AD /* ViewController.h */,
 				D266A7051A61D62D007E64AD /* ViewController.m */,
-				D266A7231A61D638007E64AD /* LICENSE.txt */,
-				D266A7241A61D638007E64AD /* README.md */,
 				D266A7251A61D638007E64AD /* UIColor+Additions.h */,
 				D266A7261A61D638007E64AD /* UIColor+Additions.m */,
-				D266A7271A61D638007E64AD /* UIColor+Additions.podspec.json */,
 				D266A7071A61D62D007E64AD /* Main.storyboard */,
 				D266A70A1A61D62D007E64AD /* Images.xcassets */,
 				D266A70C1A61D62D007E64AD /* LaunchScreen.xib */,
@@ -177,7 +170,7 @@
 		D266A6F21A61D62D007E64AD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Mobile Jazz";
 				TargetAttributes = {
 					D266A6F91A61D62D007E64AD = {
@@ -213,11 +206,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D266A7281A61D638007E64AD /* LICENSE.txt in Resources */,
 				D266A7091A61D62D007E64AD /* Main.storyboard in Resources */,
 				D266A70E1A61D62D007E64AD /* LaunchScreen.xib in Resources */,
 				D266A70B1A61D62D007E64AD /* Images.xcassets in Resources */,
-				D266A72B1A61D638007E64AD /* UIColor+Additions.podspec.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +229,6 @@
 				D266A72A1A61D638007E64AD /* UIColor+Additions.m in Sources */,
 				D266A7061A61D62D007E64AD /* ViewController.m in Sources */,
 				D266A7031A61D62D007E64AD /* AppDelegate.m in Sources */,
-				D266A7291A61D638007E64AD /* README.md in Sources */,
 				D266A7001A61D62D007E64AD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +291,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -365,6 +356,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UIColorAdditions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobilejazz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -375,6 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UIColorAdditions/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobilejazz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -398,6 +391,7 @@
 					"-all_load",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobilejazz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIColorAdditions.app/UIColorAdditions";
 			};
@@ -418,6 +412,7 @@
 					"-all_load",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mobilejazz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIColorAdditions.app/UIColorAdditions";
 			};

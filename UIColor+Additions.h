@@ -35,6 +35,34 @@ typedef unsigned int ADDColorType;
 @interface UIColor (Additions)
 
 /** *************************************************** **
+ * @name Creating instances
+ ** *************************************************** **/
+
+/**
+ * Returns a random color from the system colors (red, green, blue, ...). Clear color is excluded.
+ * @return A random color.
+ **/
++ (UIColor*)add_randomSystemColor;
+
+/**
+ * Returns a random color.
+ * @return A random color.
+ **/
++ (UIColor*)add_randomColor;
+
+/**
+ * Returns a random light color.
+ * @return A random color.
+ **/
++ (UIColor*)add_randomLightColor;
+
+/**
+ * Returns a random dark color.
+ * @return A random color.
+ **/
++ (UIColor*)add_randomDarkColor;
+
+/** *************************************************** **
  * @name Hexadecimal support
  ** *************************************************** **/
 

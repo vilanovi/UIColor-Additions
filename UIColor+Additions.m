@@ -42,6 +42,62 @@
 
 @implementation UIColor (Additions)
 
++ (UIColor*)add_randomSystemColor
+{
+    static NSArray *array = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        array = @[[UIColor redColor],
+                  [UIColor blackColor],
+                  [UIColor darkGrayColor],
+                  [UIColor lightGrayColor],
+                  [UIColor whiteColor],
+                  [UIColor grayColor],
+                  [UIColor redColor],
+                  [UIColor greenColor],
+                  [UIColor blueColor],
+                  [UIColor cyanColor],
+                  [UIColor yellowColor],
+                  [UIColor magentaColor],
+                  [UIColor orangeColor],
+                  [UIColor purpleColor],
+                  [UIColor brownColor],
+                  ];
+    });
+    
+    return array[arc4random()%array.count];
+}
+
++ (UIColor*)add_randomColor
+{
+    CGFloat hue = (128 + (CGFloat)(arc4random()%128))/256.0;
+    CGFloat saturation = ((CGFloat)(arc4random()%256))/256.0;
+    CGFloat brightness = ((CGFloat)(arc4random()%256))/256.0;
+    
+    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+    return color;
+}
+
++ (UIColor*)add_randomLightColor
+{
+    CGFloat hue = (128 + (CGFloat)(arc4random()%128))/256.0;
+    CGFloat saturation = 0.8 + (((CGFloat)(arc4random()%100))/100.0)*0.2;
+    CGFloat brightness = 0.8 + (((CGFloat)(arc4random()%100))/100.0)*0.2;
+    
+    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+    return color;
+}
+
++ (UIColor*)add_randomDarkColor
+{
+    CGFloat hue = (128 + (CGFloat)(arc4random()%128))/256.0;
+    CGFloat saturation = 0.8 + (((CGFloat)(arc4random()%100))/100.0)*0.2;
+    CGFloat brightness = 0.2 + (((CGFloat)(arc4random()%100))/100.0)*0.6;
+    
+    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
+    return color;
+}
+
 + (UIColor*)add_colorWithRGBHexValue:(ADDColorType)rgbValue
 {
     return [UIColor colorWithRed:((CGFloat)((rgbValue & ADD_RED_MASK) >> ADD_RED_SHIFT))/ADD_COLOR_SIZE
