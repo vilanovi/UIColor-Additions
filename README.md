@@ -1,5 +1,5 @@
- [![Version](https://cocoapod-badges.herokuapp.com/v/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions) 
-[![Platform](https://cocoapod-badges.herokuapp.com/p/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions) 
+ [![Version](https://cocoapod-badges.herokuapp.com/v/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions)
+[![Platform](https://cocoapod-badges.herokuapp.com/p/UIColor+Additions/badge.png)](http://cocoadocs.org/docsets/UIColor+Additions)
 
 ![UIColor+Additions](https://raw.githubusercontent.com/vilanovi/UIColor-Additions/master/UIColorAdditionsLogo.jpg)
 
@@ -10,14 +10,14 @@ UIColor+Additions is a category on **UIColor** that helps the developer making c
 
 ### Hexadecimal Color Representation
 
-Use the convenience methdos to create colors from hexadecimal integer or string values:
+Use the convenience methods to create colors from hexadecimal integer or string values:
 
     + (UIColor*)add_colorWithRGBHexValue:(ADDColorType)rgbHexValue;
     + (UIColor*)add_colorWithRGBAHexValue:(ADDColorType)rgbaHexValue;
     + (UIColor*)add_colorWithRGBHexString:(NSString*)rgbHexString;
     + (UIColor*)add_colorWithRGBAHexString:(NSString*)rgbaHexString;
 
-It is also possible to retrieve the hex reprsentation of a color:
+It is also possible to retrieve the hex representation of a color:
 
     - (BOOL)add_getRGBHexValue:(ADDColorType*)rgbHexValue;
     - (BOOL)add_getRGBAHexValue:(ADDColorType*)rgbaHexValue;
@@ -33,7 +33,7 @@ RGB colors are usually represented in a range of 0-255. UIColor+Additions add co
 
 ### Luminiscence
 
-Easily, retrieve the gray version of a given color by computing the luminiscense value of it. Also, you can check if your color is considered "light" or "dark":
+Easily, retrieve the gray version of a given color by computing the luminescence value of it. Also, you can check if your color is considered "light" or "dark":
 
     - (UIColor*)add_grayColor;
     - (BOOL)add_isLightColor;
@@ -41,7 +41,7 @@ Easily, retrieve the gray version of a given color by computing the luminiscense
 
 ### Modifying Colors
 
-Finally, UIColor+Additions add simple methods to create new lighter, darker, saturated and brightner colors from existing ones:
+Finally, UIColor+Additions add simple methods to create new lighter, darker, saturated and brightener colors from existing ones:
 
     - (UIColor*)add_colorWithSaturation:(CGFloat)newSaturation;
     - (UIColor*)add_colorWithBrightness:(CGFloat)newBrightness;
