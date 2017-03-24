@@ -40,28 +40,28 @@ typedef unsigned int ADDColorType;
 
 /**
  * Creates a color from a RGB hexadecimal integer value.
- * @param rgbValue The RGB color represented in an hexadecimal integer.
+ * @param rgbHexValue The RGB color represented in an hexadecimal integer.
  * @return The `UIColor` instance.
  **/
 + (UIColor*)add_colorWithRGBHexValue:(ADDColorType)rgbHexValue;
 
 /**
  * Creates a color from a RGBA hexadecimal integer value.
- * @param rgbValue The RGBA color represented in an hexadecimal integer.
+ * @param rgbaHexValue The RGBA color represented in an hexadecimal integer.
  * @return The `UIColor` instance.
  **/
 + (UIColor*)add_colorWithRGBAHexValue:(ADDColorType)rgbaHexValue;
 
 /**
  * Creates a color from a RGB hexadecimal string value.
- * @param rgbValue The RGB color represented in an hexadecimal string.
+ * @param rgbHexString The RGB color represented in an hexadecimal string.
  * @return The `UIColor` instance.
  **/
 + (UIColor*)add_colorWithRGBHexString:(NSString*)rgbHexString;
 
 /**
  * Creates a color from a RGBA hexadecimal string value.
- * @param rgbValue The RGBA color represented in an hexadecimal string.
+ * @param rgbaHexString The RGBA color represented in an hexadecimal string.
  * @return The `UIColor` instance.
  **/
 + (UIColor*)add_colorWithRGBAHexString:(NSString*)rgbaHexString;
@@ -144,14 +144,14 @@ typedef unsigned int ADDColorType;
 
 /**
  * Creates a new color from the current one by changing the saturation.
- * @param newSaturation 
+ * @param newSaturation The new saturation value
  * @return A new color.
  **/
 - (UIColor*)add_colorWithSaturation:(CGFloat)newSaturation;
 
 /**
  * Creates a new color from the current one by changing the brightness.
- * @param newBrightness
+ * @param newBrightness The new brightness value
  * @return A new color.
  **/
 - (UIColor*)add_colorWithBrightness:(CGFloat)newBrightness;

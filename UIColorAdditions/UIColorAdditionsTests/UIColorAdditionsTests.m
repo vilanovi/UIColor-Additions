@@ -27,17 +27,17 @@
 }
 
 - (void)testIsLightColor {
-    XCTAssertEqual(YES, [[UIColor whiteColor] isLightColor]);
-    XCTAssertEqual(YES, [[UIColor colorWithRGBHexString:@"dddddd"] isLightColor]);
-    XCTAssertEqual(NO, [[UIColor blackColor] isLightColor]);
-    XCTAssertEqual(NO, [[UIColor colorWithRGBHexString:@"cccccc"] isLightColor]);
+    XCTAssertEqual(YES, [[UIColor whiteColor] add_isLightColor]);
+    XCTAssertEqual(YES, [[UIColor add_colorWithRGBHexString:@"dddddd"] add_isLightColor]);
+    XCTAssertEqual(NO, [[UIColor blackColor] add_isLightColor]);
+    XCTAssertEqual(NO, [[UIColor add_colorWithRGBHexString:@"cccccc"] add_isLightColor]);
 }
 
 - (void)testIsDarkColor {
-    XCTAssertEqual(NO, [[UIColor whiteColor] isDarkColor]);
-    XCTAssertEqual(NO, [[UIColor colorWithRGBHexString:@"dddddd"] isDarkColor]);
-    XCTAssertEqual(YES, [[UIColor blackColor] isDarkColor]);
-    XCTAssertEqual(YES, [[UIColor colorWithRGBHexString:@"cccccc"] isDarkColor]);
+    XCTAssertEqual(NO, [[UIColor whiteColor] add_isDarkColor]);
+    XCTAssertEqual(NO, [[UIColor add_colorWithRGBHexString:@"dddddd"] add_isDarkColor]);
+    XCTAssertEqual(YES, [[UIColor blackColor] add_isDarkColor]);
+    XCTAssertEqual(YES, [[UIColor add_colorWithRGBHexString:@"cccccc"] add_isDarkColor]);
 }
 
 @end
